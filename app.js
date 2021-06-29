@@ -29,8 +29,9 @@ app.post("/", [
   }),
 
   (req, res) => {
-    if (!req.checc.isValid) {
-      return res.status(400).json(req.checc.result);
+    const { isValid, errors } = req.checc.body;
+    if (!isValid) {
+      return res.status(400).json(errors);
     }
     res.sendStatus(200);
   },
